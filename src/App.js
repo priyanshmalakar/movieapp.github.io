@@ -9,11 +9,12 @@ import RemoveFavourites from './components/RemoveFavourites'
 
 const App=()=>{
   const [movies , SetMovies] = useState([]);
-  const [searchValue , setSearchValue] = useState('');
+  const [searchValue , setSearchValue] = useState('Avenger');
   const [favourites , setFavourites] = useState([]);
 
   const getMovieRequest = async(searchValue)=>{
-    const url =`http://www.omdbapi.com/?s=${searchValue} wars&apikey=e98acbcd`;
+    
+    const url =`http://www.omdbapi.com/?s=${searchValue}&apikey=e98acbcd`;
     const response = await fetch(url);
     const responseJson = await response.json();
     if(responseJson.Search){
@@ -41,17 +42,17 @@ const App=()=>{
 		getMovieRequest(searchValue);
 	}, [searchValue]);
   
-	useEffect(() => {
-		const movieFavourites = JSON.parse(
-			localStorage.getItem('react-movie-app-favourites')
-		)
-		setFavourites(movieFavourites);
-	}, []);
+	// useEffect(() => {
+	// 	const movieFavourites = JSON.parse(
+	// 		localStorage.getItem('react-movie-app-favourites')
+	// 	)
+	// 	setFavourites(movieFavourites);
+	// }, []);
 
   return (
     <div className='container-fluid movie-app'>
       <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading="Movies"/>
+        <MovieListHeading heading="FanMovies"/>
       <SearchBox searchValue ={searchValue} setSearchValue={setSearchValue}/>
       </div>
     <div className='row'>
